@@ -1,0 +1,66 @@
+version: '3.9'
+services:
+  ssh-client:
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    command: tail -F /dev/random
+    container_name: ssh-client
+    networks:
+      ssh-network:
+        ipv4_address: 10.10.0.2
+  ssh-serv1:
+    build:
+      dockerfile: Dockerfile
+      context: ./ssh-serv1
+    container_name: ssh-serv1
+    networks:
+      ssh-network:
+        ipv4_address: 10.10.0.3
+  ssh-serv2:
+    build:
+      dockerfile: Dockerfile
+      context: ./ssh-serv2
+    container_name: ssh-serv2
+    networks:
+      ssh-network:
+        ipv4_address: 10.10.0.4
+  ssh-serv3:
+    build:
+      dockerfile: Dockerfile
+      context: ./ssh-serv3
+    container_name: ssh-serv3
+    networks:
+      ssh-network:
+        ipv4_address: 10.10.0.5
+  ssh-serv4:
+    build:
+      dockerfile: Dockerfile
+      context: ./ssh-serv4
+    container_name: ssh-serv4
+    networks:
+      ssh-network:
+        ipv4_address: 10.10.0.6
+  ssh-serv5:
+    build:
+      dockerfile: Dockerfile
+      context: ./ssh-serv5
+    container_name: ssh-serv5
+    networks:
+      ssh-network:
+        ipv4_address: 10.10.0.7
+  ssh-serv6:
+    build:
+      dockerfile: Dockerfile
+      context: ./ssh-serv6
+    container_name: ssh-serv6
+    networks:
+      ssh-network:
+        ipv4_address: 10.10.0.8
+networks:
+  ssh-network:
+    ipam:
+      driver: default 
+      config:
+        - subnet: 10.10.0.0/16
+          gateway: 10.10.0.1

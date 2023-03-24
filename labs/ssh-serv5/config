@@ -1,0 +1,5 @@
+# Config to protected host
+Host 10.10.0.8
+  HostName 10.10.0.8
+  User root
+  IdentityFile /root/.ssh/id

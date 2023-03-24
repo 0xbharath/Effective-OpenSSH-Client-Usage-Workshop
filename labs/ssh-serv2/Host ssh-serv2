@@ -1,0 +1,15 @@
+Host ssh-serv2
+    Hostname 10.10.0.4
+    User root
+    Port 2222
+    ServerAliveInterval 30
+    ServerAliveCountMax 10
+    IdentityFile /workshop-files/id
+    IdentitiesOnly yes
+Host sshserver200
+    Hostname 10.10.0.5
+    #ProxyJump ssh akash@192.168.1.100:22
+    User akash
+    Port 2222
+    ServerAliveInterval 30
+    ServerAliveCountMax 10
