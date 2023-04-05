@@ -45,23 +45,17 @@ The tools that we will cover include:
 
 ## Setting up the environment
 
-<span style="color:#89cdd3">
-
 1. Install docker and docker compose on your system
-2. Clone the repo ``
+2. Clone the repo `git clone https://github.com/0xbharath/Effective-OpenSSH-Client-Usage-Workshop.git`
 3. Change the directory to "labs" `cd effective-ssh-workshop/labs`
 4. Spin up the labs using `docker-compose up`
 5. Once the session is over, you can run `docker compose down` to remove the resources created
-
-</span>
 
 ## Accessing client
 
 <img src="../Static/client.png"  width="100" height="80">
 
-<span style="color:#89cdd3">
 Let's get shell access to the "ssh-client" machine using the following command - 
-</span>
 
 ```bash
 docker exec -it ssh-client sh

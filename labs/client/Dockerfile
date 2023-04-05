@@ -8,6 +8,8 @@ RUN apk add --no-cache \
   tmux \
   curl 
 
+RUN chmod 700 $HOME/workshop-files/id
+
 RUN eval `ssh-agent`
 
 WORKDIR /workshop-files

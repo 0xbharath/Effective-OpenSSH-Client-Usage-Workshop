@@ -34,6 +34,7 @@ RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/
 COPY ./id /root/.ssh/id
 COPY ./config /root/.ssh/config
 
+RUN chmod 700 /root/.ssh/id
 RUN eval `ssh-agent -s` && ssh-add /root/.ssh/id
 
 # Expose port 22 for SSH
