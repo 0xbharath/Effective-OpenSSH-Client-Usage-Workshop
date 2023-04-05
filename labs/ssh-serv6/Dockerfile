@@ -41,8 +41,8 @@ RUN echo "sshd: 10.10.0.7/32" >> /etc/hosts.allow
 # Expose port 22 for SSH
 EXPOSE 22 80 8080
 
-COPY ./setup.sh /home/
-RUN chmod +x /home/setup.sh
+#COPY ./setup.sh /home/
+#RUN chmod +x /home/setup.sh
 # Start SSH server
 #CMD ["/usr/sbin/sshd", "-D"]
 

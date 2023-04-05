@@ -23,6 +23,7 @@
     - [Manual way](#manual-way-1)
     - [Using SSH config](#using-ssh-config)
   - [Scenario 1 - SSH Port forwarding](#scenario-1---ssh-port-forwarding)
+    - [Local Port forwarding](#local-port-forwarding)
 
 
 # Effective usage of OpenSSH client suite
@@ -290,4 +291,42 @@ ssh -F custom-ssh-config ssh-serv3
 ## Scenario 1 - SSH Port forwarding
 
 SSH port forwarding is a mechanism in SSH for tunneling application ports from the client machine to the server machine, or vice versa. It can be used for adding encryption to legacy applications, going through firewalls, and having access into the internal network from home machines. 
+
+More information on [SSH Port Forwarding](https://www.ssh.com/academy/ssh/tunneling-example)
+
+### Local Port forwarding 
+
+Local forwarding is used to forward a port from the client machine to the server machine. Basically, the SSH client listens for connections on a configured port, and when it receives a connection, it tunnels the connection to an SSH server. The server connects to a configurated destination port, possibly on a different machine than the SSH server.
+
+1. Let's confirm that we don't have any service running on port 9999
+
+```bash
+netstat -nltp
+```
+
+2. Let's forward our local port 9999 to remote server's port 80
+
+```bash
+ssh -4 -f -N -L 9999:10.10.0.6:80 -J ubuntu@10.10.0.3 root@10.10.0.6
+```
+
+3. Verify that your local port 9999 is bind succesfully
+
+```bash
+netstat -nltp
+```
+
+4. Verify that your port forwarding is succesful and you can connect to the service 
+
+```bash
+curl 127.0.0.1:9999
+```
+
+5. Let's connect to a service that is only binding to `127.0.0.1` on the remote server 
+
+```bash
+ssh -4 -f -N -L 9999:127.0.0.1:8080 root@10.10.0.6
+```
+
+
 

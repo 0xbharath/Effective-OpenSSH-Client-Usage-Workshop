@@ -36,13 +36,11 @@ RUN echo "server { \
     } \
 }" > /etc/nginx/sites-available/default
 
-RUN 
-
 # Expose port 22 for SSH
 EXPOSE 22 80 8080
 
-COPY ./setup.sh /home/
-RUN chmod +x /home/setup.sh
+#COPY ./setup.sh /home/
+#RUN chmod +x /home/setup.sh
 # Start SSH server
 #CMD ["/usr/sbin/sshd", "-D"]
 
