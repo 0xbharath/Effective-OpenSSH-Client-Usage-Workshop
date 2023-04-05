@@ -24,9 +24,9 @@
     - [Using SSH config](#using-ssh-config)
   - [Scenario 1 - SSH Port forwarding](#scenario-1---ssh-port-forwarding)
     - [Local Port forwarding](#local-port-forwarding)
-  - [Dynamic forwarding](#dynamic-forwarding)
-    - [Dynamic forwading - DEMO](#dynamic-forwading---demo)
-    - [Dynamic forwading - Exercise](#dynamic-forwading---exercise)
+    - [Dynamic forwarding](#dynamic-forwarding)
+      - [Dynamic forwading - DEMO](#dynamic-forwading---demo)
+      - [Dynamic forwading - Exercise](#dynamic-forwading---exercise)
 
 
 # Effective usage of OpenSSH client suite
@@ -323,11 +323,11 @@ curl 127.0.0.1:9999
 ssh -4 -f -N -L 9999:127.0.0.1:8080 root@10.10.0.6
 ```
 
-## Dynamic forwarding
+### Dynamic forwarding
 
-Dynamic port forwarding turns your SSH client into a SOCKS5 proxy server. SOCKS is an old but widely used protocol for programs to request outbound connections through a proxy server.
+Dynamic port forwarding turns your SSH client into a SOCKS5 proxy server. SOCKS is an old but widely used protocol for programs to request outbound connections through a proxy server. Consider this as rudimentary VPN setup.
 
-### Dynamic forwading - DEMO 
+#### Dynamic forwading - DEMO 
 
 ```bash
 ssh -f -N -D 13000 proxy-user@XX.XX.XX.XX -v -o PreferredAuthentications=password
@@ -335,7 +335,7 @@ curl --socks5 127.0.0.1:13000 http://icanhazip.com -s
 curl http://icanhazip.com -s
 ```
 
-### Dynamic forwading - Exercise
+#### Dynamic forwading - Exercise
 
 <img src="../Static/exercise.png"  width="600" height="400">
 
