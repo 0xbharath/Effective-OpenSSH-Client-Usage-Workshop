@@ -19,10 +19,10 @@
   - [Scenario 2 - Copying files between machines over SSH](#scenario-2---copying-files-between-machines-over-ssh)
     - [Copying a folder from the server to client](#copying-a-folder-from-the-server-to-client)
     - [Copying a folder from the client to server](#copying-a-folder-from-the-client-to-server)
-  - [Scenario 2 - SSH via Jump host / bastion host](#scenario-2---ssh-via-jump-host--bastion-host)
+  - [Scenario 3 - SSH via Jump host / bastion host](#scenario-3---ssh-via-jump-host--bastion-host)
     - [Manual way](#manual-way-1)
     - [Using SSH config](#using-ssh-config)
-  - [Scenario 1 - SSH Port forwarding](#scenario-1---ssh-port-forwarding)
+  - [Scenario 4 - SSH Port forwarding](#scenario-4---ssh-port-forwarding)
     - [Local Port forwarding](#local-port-forwarding)
     - [Dynamic forwarding](#dynamic-forwarding)
       - [Dynamic forwading - DEMO](#dynamic-forwading---demo)
@@ -243,7 +243,7 @@ mv sample-directory sample-directory-client
 scp -F custom-ssh-config -r sample-directory-client ssh-serv1:/home/ubuntu/sample-directory-client
 ```
 
-## Scenario 2 - SSH via Jump host / bastion host
+## Scenario 3 - SSH via Jump host / bastion host
 
 <img src="../Static/jump-host.png"  width="400" height="200">
 
@@ -281,7 +281,7 @@ Host ssh-serv3
 ssh -F custom-ssh-config ssh-serv3
 ```
 
-## Scenario 1 - SSH Port forwarding
+## Scenario 4 - SSH Port forwarding
 
 SSH port forwarding is a mechanism in SSH for tunneling application ports from the client machine to the server machine, or vice versa. It can be used for adding encryption to legacy applications, going through firewalls, and having access into the internal network from home machines. 
 
