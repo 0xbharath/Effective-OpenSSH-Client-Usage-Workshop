@@ -24,6 +24,9 @@
     - [Using SSH config](#using-ssh-config)
   - [Scenario 1 - SSH Port forwarding](#scenario-1---ssh-port-forwarding)
     - [Local Port forwarding](#local-port-forwarding)
+  - [Dynamic forwarding](#dynamic-forwarding)
+    - [Dynamic forwading - DEMO](#dynamic-forwading---demo)
+    - [Dynamic forwading - Exercise](#dynamic-forwading---exercise)
 
 
 # Effective usage of OpenSSH client suite
@@ -66,6 +69,8 @@ docker exec -it ssh-client sh
 
 ## Scenario 1 - Logging into an SSH Server
 
+<img src="../Static/ssh-serv1.png"  width="250" height="200">
+
 Let's SSH into `ssh-serv1` (10.10.0.3) from our `ssh-client` machine (10.10.0.2)
 
 To be able to SSH you need the following details - 
@@ -107,24 +112,15 @@ OpenSSH client parameters can be provided in three different ways (this is also 
 
 Let's create a custom SSH client config file - 
 
-<span style="color:#89cdd3">
-1. Make a new directory `effective-ssh` on `ssh-client` docker
-</span>
-
-```bash
-mkdir effective-ssh
-cd effective-ssh-usage-for-pentesters
-```
-
-<span style="color:#89cdd3">
-2. Open your favourite text editor (ofcourse, `nano`) and create a new file called `custom-ssh-config`
-</span>
+1. Open your favourite text editor (ofcourse, `nano`) and create a new file called `custom-ssh-config`
 
 This is a simple text file. Configurations can be on a per-host basis.
 
 #### **Lets add a new host**
 
-`Host ssh-serv1`
+```bash
+Host ssh-serv1
+```
 
 While it is not required, convention is to indent the various server blocks.
 
@@ -154,15 +150,15 @@ Host ssh-serv1
 
 #### **Add more useful configurations**
 
-The following two parameters are good to add but not mandatory. They are primarily to ensure that our connection stays alive for long we can add the following two configuration options. These options are particularly useful when working when the connectivity is unstable.
+The following two parameters are good-to-add but not mandatory. They are primarily to ensure that our connection stays alive for long we can add the following two configuration options. These options are particularly useful when working when the connectivity is unstable.
 
 - `ServerAliveInterval 30`
 - `ServerAliveCountMax 10`
 
 The following parameters make it relatively secure and easy to manage the SSH identity files.
 
-- IdentitiesOnly yes (Use only the configured SSH identity key)
-- AddKeysToAgent yes (Add keys to the agent as required on first connection)
+- `IdentitiesOnly yes` (Use only the configured SSH identity key)
+- `AddKeysToAgent yes` (Add keys to the agent as required on first connection)
 
 #### Final output
 
@@ -249,6 +245,8 @@ scp -F custom-ssh-config -r sample-directory-client ssh-serv1:/home/ubuntu/sampl
 
 ## Scenario 2 - SSH via Jump host / bastion host
 
+<img src="../Static/jump-host.png"  width="400" height="200">
+
 A jump host, also known as a jump box,  jump server or bastion host, is a machine that acts as an intermediary to a remote network. A user can connect to another host through the jump box.
 
 > More details on jump hosts [https://tailscale.com/learn/access-remote-server-jump-host/](https://tailscale.com/learn/access-remote-server-jump-host/)
@@ -292,6 +290,8 @@ More information on [SSH Port Forwarding](https://www.ssh.com/academy/ssh/tunnel
 
 Local forwarding is used to forward a port from the client machine to the server machine. Basically, the SSH client listens for connections on a configured port, and when it receives a connection, it tunnels the connection to an SSH server. The server connects to a configurated destination port, possibly on a different machine than the SSH server.
 
+<img src="../Static/local-forward.png"  width="400" height="200">
+
 1. Let's confirm that we don't have any service running on port 9999
 
 ```bash
@@ -301,7 +301,7 @@ netstat -nltp
 2. Let's forward our local port 9999 to remote server's port 80
 
 ```bash
-ssh -4 -f -N -L 9999:10.10.0.6:80 -J ubuntu@10.10.0.3 root@10.10.0.6
+ssh -i id -4 -f -N -L 9999:10.10.0.6:80 -J root@10.10.0.4 root@10.10.0.6
 ```
 
 3. Verify that your local port 9999 is bind succesfully
@@ -321,6 +321,32 @@ curl 127.0.0.1:9999
 ```bash
 ssh -4 -f -N -L 9999:127.0.0.1:8080 root@10.10.0.6
 ```
+
+## Dynamic forwarding
+
+Dynamic port forwarding turns your SSH client into a SOCKS5 proxy server. SOCKS is an old but widely used protocol for programs to request outbound connections through a proxy server.
+
+
+### Dynamic forwading - DEMO 
+
+```bash
+ssh -f -N -D 13000 proxy-user@3.87.52.149 -v -o PreferredAuthentications=password
+curl --socks5 127.0.0.1:13000 http://icanhazip.com -s
+curl http://icanhazip.com -s
+```
+
+### Dynamic forwading - Exercise
+
+<img src="../Static/exercise.png"  width="400" height="200">
+
+Write an SSH config file to do the following - 
+
+1. Dynamic forward local port 15000
+2. Has to access web app on port 8080 on 10.10.0.8
+
+
+
+
 
 
 
