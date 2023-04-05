@@ -6,9 +6,7 @@ RUN apk add --no-cache \
   nano \
   bash \
   tmux \
-  curl 
-
-RUN chmod 700 /workshop-files/id
+  curl
 
 RUN eval `ssh-agent`
 
@@ -17,3 +15,5 @@ WORKDIR /workshop-files
 EXPOSE 80 8080 9999
 
 ADD ./workshop-files/* $HOME/workshop-files/
+
+RUN chmod 700 $HOME/workshop-files/id
