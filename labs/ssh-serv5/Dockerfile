@@ -38,6 +38,7 @@ RUN touch /etc/hosts.allow && touch /etc/hosts.deny
 RUN echo "sshd: ALL" >> /etc/hosts.deny
 RUN echo "sshd: 10.10.0.4/32" >> /etc/hosts.allow
 
+RUN chmod 700 /root/.ssh/id
 RUN eval `ssh-agent -s` && ssh-add /root/.ssh/id
 
 # Expose port 22 for SSH
