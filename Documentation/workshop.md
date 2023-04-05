@@ -50,13 +50,13 @@ The tools that we will cover include:
 
 1. Install docker and docker compose on your system
 2. Clone the repo `git clone https://github.com/0xbharath/Effective-OpenSSH-Client-Usage-Workshop.git`
-3. Change the directory to "labs" `cd effective-ssh-workshop/labs`
+3. Change the directory to "labs" `cd Effective-OpenSSH-Client/labs`
 4. Spin up the labs using `docker-compose up`
 5. Once the session is over, you can run `docker compose down` to remove the resources created
 
 ## Accessing client
 
-<img src="../Static/client.png"  width="100" height="80">
+<img src="../Static/client.png"  width="200" height="150">
 
 Let's get shell access to the "ssh-client" machine using the following command - 
 
@@ -69,7 +69,7 @@ docker exec -it ssh-client sh
 
 ## Scenario 1 - Logging into an SSH Server
 
-<img src="../Static/ssh-serv1.png"  width="250" height="200">
+<img src="../Static/ssh-serv1.png"  width="450" height="400">
 
 Let's SSH into `ssh-serv1` (10.10.0.3) from our `ssh-client` machine (10.10.0.2)
 
@@ -290,7 +290,7 @@ More information on [SSH Port Forwarding](https://www.ssh.com/academy/ssh/tunnel
 
 Local forwarding is used to forward a port from the client machine to the server machine. Basically, the SSH client listens for connections on a configured port, and when it receives a connection, it tunnels the connection to an SSH server. The server connects to a configurated destination port, possibly on a different machine than the SSH server.
 
-<img src="../Static/local-forward.png"  width="400" height="200">
+<img src="../Static/local-forward.png"  width="600" height="400">
 
 1. Let's confirm that we don't have any service running on port 9999
 
@@ -337,7 +337,7 @@ curl http://icanhazip.com -s
 
 ### Dynamic forwading - Exercise
 
-<img src="../Static/exercise.png"  width="400" height="200">
+<img src="../Static/exercise.png"  width="600" height="400">
 
 Write an SSH config file to do the following - 
 
