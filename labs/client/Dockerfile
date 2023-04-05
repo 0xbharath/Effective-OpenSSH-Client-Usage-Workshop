@@ -16,4 +16,4 @@ EXPOSE 80 8080 9999
 
 ADD ./workshop-files/* $HOME/workshop-files/
 
-RUN chmod 700 $HOME/workshop-files/id
+RUN chmod 700 /workshop-files/id

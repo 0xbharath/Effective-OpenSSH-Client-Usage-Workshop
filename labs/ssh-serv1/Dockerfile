@@ -20,7 +20,7 @@ RUN useradd -ms /bin/bash ubuntu && \
 
 COPY ./sample-directory/ /home/ubuntu/sample-directory/
 
-RUN chmod 700 /home/ubuntu/.ssh/id
+#RUN chmod 700 /home/ubuntu/.ssh/id
 
 # Set SSH client IP restriction
 #RUN echo "Match Address 172.17.0.2" >> /etc/ssh/sshd_config && \
