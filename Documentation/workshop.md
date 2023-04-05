@@ -254,6 +254,7 @@ A jump host, also known as a jump box,  jump server or bastion host, is a machin
 ### Manual way
 
 ```bash
+ssh-add -l # Ensure that your keys are added to SSH authentication agent
 ssh -i id -J root@10.10.0.4:2222 root@10.10.0.5 -v
 ```
 
@@ -326,11 +327,10 @@ ssh -4 -f -N -L 9999:127.0.0.1:8080 root@10.10.0.6
 
 Dynamic port forwarding turns your SSH client into a SOCKS5 proxy server. SOCKS is an old but widely used protocol for programs to request outbound connections through a proxy server.
 
-
 ### Dynamic forwading - DEMO 
 
 ```bash
-ssh -f -N -D 13000 proxy-user@3.87.52.149 -v -o PreferredAuthentications=password
+ssh -f -N -D 13000 proxy-user@XX.XX.XX.XX -v -o PreferredAuthentications=password
 curl --socks5 127.0.0.1:13000 http://icanhazip.com -s
 curl http://icanhazip.com -s
 ```
@@ -342,7 +342,7 @@ curl http://icanhazip.com -s
 Write an SSH config file to do the following - 
 
 1. Dynamic forward local port 15000
-2. Has to access web app on port 8080 on 10.10.0.8
+2. You should be able to access web app on port 8080 on 10.10.0.8 that is listening on 127.0.0.1
 
 
 
