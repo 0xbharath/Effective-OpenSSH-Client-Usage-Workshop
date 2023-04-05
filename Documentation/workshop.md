@@ -315,7 +315,7 @@ netstat -nltp
 
 ```bash
 curl 127.0.0.1:9999
-```
+``` 
 
 5. Let's connect to a service that is only binding to `127.0.0.1` on the remote server 
 
