@@ -5,16 +5,16 @@
   - [Scenario 1 - Logging into an SSH Server](#scenario-1---logging-into-an-ssh-server)
     - [Manual way](#manual-way)
     - [Using SSH Config file](#using-ssh-config-file)
-      - [**Lets add a new host**](#lets-add-a-new-host)
-      - [**Add a hostname or ip address for that host**](#add-a-hostname-or-ip-address-for-that-host)
-      - [**Add a username**](#add-a-username)
-      - [**Add SSH keys/identities to config**](#add-ssh-keysidentities-to-config)
-      - [**Add more useful configurations**](#add-more-useful-configurations)
+      - [Lets add a new host](#lets-add-a-new-host)
+      - [Add a hostname or ip address for that host](#add-a-hostname-or-ip-address-for-that-host)
+      - [Add a username](#add-a-username)
+      - [Add SSH keys/identities to config](#add-ssh-keysidentities-to-config)
+      - [Add more useful configurations](#add-more-useful-configurations)
       - [Final output](#final-output)
       - [Using our custom config file](#using-our-custom-config-file)
     - [Let's go through SSH client configuration options](#lets-go-through-ssh-client-configuration-options)
     - [SSH Agent](#ssh-agent)
-      - [**Run ssh-agent**](#run-ssh-agent)
+      - [Run ssh-agent](#run-ssh-agent)
       - [Add keys to ssh-agent](#add-keys-to-ssh-agent)
   - [Scenario 2 - Copying files between machines over SSH](#scenario-2---copying-files-between-machines-over-ssh)
     - [Copying a folder from the server to client](#copying-a-folder-from-the-server-to-client)
@@ -116,7 +116,7 @@ Let's create a custom SSH client config file -
 
 This is a simple text file. Configurations can be on a per-host basis.
 
-#### **Lets add a new host**
+#### Lets add a new host
 
 ```bash
 Host ssh-serv1
@@ -124,14 +124,14 @@ Host ssh-serv1
 
 While it is not required, convention is to indent the various server blocks.
 
-#### **Add a hostname or ip address for that host**
+#### Add a hostname or ip address for that host
 
 ```bash
 Host ssh-serv1
     Hostname 10.10.0.3
 ```
 
-#### **Add a username**
+#### Add a username
 
 ```bash
 Host ssh-serv1
@@ -139,7 +139,7 @@ Host ssh-serv1
     User ubuntu
 ```
 
-#### **Add SSH keys/identities to config**
+#### Add SSH keys/identities to config
 
 ```bash
     Host ssh-serv1
@@ -148,7 +148,7 @@ Host ssh-serv1
         IdentityFile ./id
 ```
 
-#### **Add more useful configurations**
+#### Add more useful configurations
 
 The following two parameters are good-to-add but not mandatory. They are primarily to ensure that our connection stays alive for long we can add the following two configuration options. These options are particularly useful when working when the connectivity is unstable.
 
@@ -196,7 +196,7 @@ man 5 ssh_config
 The `ssh-agent` is a helper program that keeps track of users' identity keys and their passphrases. Simply put, ssh-agent will remember your keys and passphrases till we reboot the system.
 
 
-#### **Run ssh-agent**
+#### Run ssh-agent
 
 Run the following command to run `ssh-agent`
 
